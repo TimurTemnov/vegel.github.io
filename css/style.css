@@ -407,7 +407,7 @@ button, input, textarea { font-family: inherit; }
 }
 
 /* =====================================================
-   8. SERVICES (Услуги)
+   8. SERVICES (Услуги) – расширенный
    ===================================================== */
 .services {
     background-color: #e0d4be;
@@ -415,13 +415,19 @@ button, input, textarea { font-family: inherit; }
     position: relative;
     color: #252b27;
 }
+.services .container {
+    max-width: 1400px;
+    width: 95%;
+}
 .services .section-title h2 { color: #252b27; }
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0;
     border: 0;
 }
+
 .service-card {
     min-height: 290px;
     padding: 32px 28px;
@@ -431,34 +437,35 @@ button, input, textarea { font-family: inherit; }
     box-shadow: none;
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 20px;               /* уменьшенный отступ */
     transition: var(--transition);
 }
 .service-card:hover { transform: none; box-shadow: none; border-color: #e0d4be; }
 
 .service-photo {
-    flex: 0 0 180px;
-    width: 180px;
-    height: 180px;
+    flex: 0 0 150px;         /* уменьшили размер */
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    overflow: hidden;          /* обрезаем по кругу */
-    background: #e0d4be;       /* фон на случай задержки загрузки */
+    overflow: hidden;
+    background: #e0d4be;
 }
-
 .service-photo img {
     width: 100%;
     height: 100%;
-    object-fit: cover;         /* заполняет круг, как раньше background-size: cover */
+    object-fit: cover;
     display: block;
 }
 
 .service-content { flex: 1; }
+
 .service-number {
     font-family: "PT Mono", monospace;
     color: #252b27;
     font-size: 13px;
     margin-bottom: 12px;
 }
+
 .service-card h3 {
     font-family: "BrokgauzEfron", Georgia, serif !important;
     font-weight: 400;
@@ -468,9 +475,10 @@ button, input, textarea { font-family: inherit; }
     font-variant: small-caps;
     margin-bottom: 12px;
 }
+
 .service-card p {
-    font-size: 13px;
-    line-height: 1.55;
+    font-size: 17px;          /* увеличенный шрифт */
+    line-height: 1.6;
     color: #252b27;
 }
 
@@ -591,6 +599,11 @@ button, input, textarea { font-family: inherit; }
     font-size: 17px;
 }
 .about-text .btn-primary { color: #f0e7d4; }
+
+/* Уменьшаем заголовок в секции ABOUT, чтобы он помещался в 2 строки */
+.about .section-title h2 {
+    font-size: clamp(34px, 4vw, 48px);
+}
 
 /* =====================================================
    11. COMPANY DETAILS (контакты + карта)
@@ -836,3 +849,38 @@ button, input, textarea { font-family: inherit; }
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* =====================================================
+   ВЫРАВНИВАНИЕ ВСЕХ ЗАГОЛОВКОВ ПО ОДНОЙ ЛИНИИ
+   ===================================================== */
+
+/* 1. Все контейнеры делаем одинаковой ширины */
+.services .container {
+    max-width: 1200px;   /* как у всех */
+    width: 90%;          /* как у всех */
+}
+
+/* 2. Убираем лишние внутренние отступы у обёрток, чтобы текст начинался с края контейнера */
+.about-wrapper,
+.details-wrapper,
+.requisites-wrapper,
+.about-text,
+.details-info,
+.requisites-col {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+/* 3. Заголовки (.section-title) занимают всю ширину контейнера, без ограничения max-width */
+.section-title {
+    max-width: 100%;
+}
+
+/* 4. Для блоков, где текст идёт внутри колонок (about-text, details-info, requisites-col) – убираем лишние отступы слева */
+.about-text,
+.details-info,
+.requisites-col {
+    padding-left: 0 !important;  /* если есть встроенные отступы */
+}
+
+/* 5. Если в .about-wrapper или .details-wrapper есть gap, он не влияет на отступ слева – оставляем как есть */
