@@ -737,6 +737,8 @@ button, input, textarea { font-family: inherit; }
     height: 100%;
     object-fit: cover;
     display: block;
+    filter: saturate(0.7);  /* ← добавьте эту строку */
+
 }
 
 /* =====================================================
